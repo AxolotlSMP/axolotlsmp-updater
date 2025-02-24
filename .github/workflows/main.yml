@@ -1,7 +1,8 @@
 name: Build AxolotlSMP Updater
 on:
   push:
-    branches: [ master ]  # or [ master ] depending on your branch
+    branches: [ master ]
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -15,7 +16,7 @@ jobs:
         node-version: '18'
     - run: npm install
     - run: npm run build
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: axolotl-updater-${{ matrix.os }}
         path: dist/
